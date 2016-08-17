@@ -1,11 +1,12 @@
 module.exports = function(callback) {
     // perform actions
     var registry = Registry.deployed();
-    var contractFactoryAddress = ContractFactory.deployed().address;
 
-    // register factories in registry
-    registry.addContract("contractFactory", contractFactoryAddress);
+    // register contracts in registry
+    registry.addContract("contractFactory", ContractFactory.deployed().address);
+    registry.addContract("proxyFactory", ProxyFactory.deployed().address);
+    registry.addContract("consortium", Consortium.deployed().address);
 
     // set registry address in registry aware contracts
-    Proxy.deployed().setRegistryAddress(registry.address);
-}
+    ProxyFactory.deployed().setRegistryAddress(registry.address);
+};

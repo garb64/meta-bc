@@ -1,4 +1,4 @@
-contract('ContractFactory', function(accounts) {
+contract('ContractFactory', (accounts) => {
 
   it("should build contact contracts", () => {
     var contractFactory = ContractFactory.deployed();
@@ -13,4 +13,5 @@ contract('ContractFactory', function(accounts) {
       });
     });
   });
+
 });
