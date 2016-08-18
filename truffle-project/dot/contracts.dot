@@ -1,0 +1,12 @@
+digraph Contracts {
+    node [shape = box];
+    Registry [style=filled];
+    Registry -> { ContractFactory; ProxyFactory; Consortium } [style=dashed, label="registers"]
+    ContractFactory -> Contract [label="builds"];
+    ProxyFactory -> Consortium [style=dotted, label="checks\nrole", color=green];
+    ProxyFactory -> Registry [style=dotted, label="queries", color=blue];
+    ProxyFactory -> Proxy [label="builds"];
+    Proxy -> Registry [style=dotted; label="queries", color=blue];
+    Proxy -> ContractFactory [style=dotted, label="uses"];
+    Proxy -> Contract [style=dashed, label="registers"];
+}
