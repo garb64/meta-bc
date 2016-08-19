@@ -8,7 +8,7 @@ contract ProxyFactory is RegistryAware {
         Proxy p = new Proxy(userAccount);
         p.setRegistryAddress(REGISTRY);
         addr = p;
-        ProxyBuilt(msg.sender, addr);
+        ProxyBuilt(userAccount, addr);
         return addr;
     }
 }
