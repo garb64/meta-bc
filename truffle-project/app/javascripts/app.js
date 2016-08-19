@@ -1,40 +1,24 @@
 var accounts;
 var account;
-var balance;
+var userAccount;
 
 function setStatus(message) {
   var status = document.getElementById("status");
   status.innerHTML = message;
-};
+}
 
-function refreshBalance() {
-  var meta = MetaCoin.deployed();
-
-  meta.getBalance.call(account, {from: account}).then(function(value) {
-    var balance_element = document.getElementById("balance");
-    balance_element.innerHTML = value.valueOf();
+function buildProxy() {
+  var proxyFactory = ProxyFactory.deployed();
+  var partnerAccount = accounts[1];
+  var userAccount = accounts[3];
+  console.log("Initiating transaction... (please wait)");
+  proxyFactory.buildProxy.sendTransaction({from: partnerAccount}).then(function() {
+    console.log("Transaction complete!");
   }).catch(function(e) {
     console.log(e);
-    setStatus("Error getting balance; see log.");
+    console.log("Error building proxy; see log.");
   });
-};
-
-function sendCoin() {
-  var meta = MetaCoin.deployed();
-
-  var amount = parseInt(document.getElementById("amount").value);
-  var receiver = document.getElementById("receiver").value;
-
-  setStatus("Initiating transaction... (please wait)");
-
-  meta.sendCoin(receiver, amount, {from: account}).then(function() {
-    setStatus("Transaction complete!");
-    refreshBalance();
-  }).catch(function(e) {
-    console.log(e);
-    setStatus("Error sending coin; see log.");
-  });
-};
+}
 
 window.onload = function() {
   web3.eth.getAccounts(function(err, accs) {
@@ -50,7 +34,5 @@ window.onload = function() {
 
     accounts = accs;
     account = accounts[0];
-
-    refreshBalance();
   });
-}
+};

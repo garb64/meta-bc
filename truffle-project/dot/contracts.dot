@@ -1,4 +1,5 @@
 digraph Contracts {
+    Account;
     node [shape = box];
     Registry [style=filled];
     Registry -> { ContractFactory; ProxyFactory; Consortium } [style=dashed, label="registers"]
@@ -9,4 +10,5 @@ digraph Contracts {
     Proxy -> Registry [style=dotted; label="queries", color=blue];
     Proxy -> ContractFactory [style=dotted, label="uses"];
     Proxy -> Contract [style=dashed, label="registers"];
+    Proxy -> Account [label="belongs to"];
 }
