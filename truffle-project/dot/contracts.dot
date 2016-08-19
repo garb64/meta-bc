@@ -1,5 +1,9 @@
 digraph Contracts {
-    Account;
+    subgraph cluster_Accounts {
+        graph [style=invis];
+        Account;
+        Partner;
+	}
     node [shape = box];
     Registry [style=filled];
     Registry -> { ContractFactory; ProxyFactory; Consortium } [style=dashed, label="registers"]
@@ -11,4 +15,5 @@ digraph Contracts {
     Proxy -> ContractFactory [style=dotted, label="uses"];
     Proxy -> Contract [style=dashed, label="registers"];
     Proxy -> Account [label="belongs to"];
+    Partner -> ProxyFactory [style=dotted, label="uses"];
 }
