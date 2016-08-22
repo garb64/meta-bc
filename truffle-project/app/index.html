@@ -1,19 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="metaBc">
 <head>
-  <title>Consortium Partner</title>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <title>meta-bc</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="./app.css" rel='stylesheet' type='text/css'>
   <script src="./app.js"></script>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">meta-bc Demo</a>
+      </div>
+    </div>
+  </nav>
 </head>
-<body>
-  <h1>Consortium Partner</h1>
-  <h2>Create Proxy Contract for User</h2>
-  <br><label for="userAccount">Account:</label><input type="text" id="userAccount" placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"></input>
-  <br><br><button id="send" onclick="buildProxy()">Build Proxy</button>
-  <br><br>
-  <span id="result"></span>
-  <br><br>
-  <span id="status"></span>
+<body ng-controller="mainController">
+<div id="main">
+  <toast></toast>
+  <div class="container">
+    <h3>Accounts</h3>
+    <table class="table">
+      <tr>
+        <th>User</th>
+        <th>Account</th>
+        <th>Proxy Address</th>
+        <th>Open View</th>
+      </tr>
+      <tr>
+        <td>Consortium Partner 1</td>
+        <td>{{accounts[1]}}</td>
+        <td></td>
+        <td><a class="btn btn-default btn-disabled" href="#/partner?id=1">
+          <i class="fa fa-industry"></i> Open</a></td>
+      </tr>
+      <tr>
+        <td>Consortium Partner 2</td>
+        <td>{{accounts[2]}}</td>
+        <td></td>
+        <td><a class="btn btn-default btn-disabled" href="#/partner?id=2">
+          <i class="fa fa-industry"></i> Open</a></td>
+      </tr>
+      <tr>
+        <td>User 1</td>
+        <td>{{accounts[5]}}</td>
+        <td>Proxy 1</td>
+        <td><a class="btn btn-default btn-disabled" href="#/user?id=5">
+          <i class="fa fa-user"></i> Open</a></td>
+      </tr>
+      <tr>
+        <td>User 2</td>
+        <td>{{accounts[6]}}</td>
+        <td>Proxy 1</td>
+        <td><a class="btn btn-default btn-disabled" href="#/user?id=6">
+          <i class="fa fa-user"></i> Open</a></td>
+      </tr>
+      <tr>
+        <td>User 3</td>
+        <td>{{accounts[7]}}</td>
+        <td>Proxy 1</td>
+        <td><a class="btn btn-default btn-disabled" href="#/user?id=7">
+          <i class="fa fa-user"></i> Open</a></td>
+      </tr>
+    </table>
+  </div>
+  <div class="container" ng-view></div>
+</div>
 </body>
 </html>
