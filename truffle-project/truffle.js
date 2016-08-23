@@ -1,16 +1,21 @@
 module.exports = {
   build: {
     "index.html": "index.html",
-    "pages/": "pages/",
+    "views/": "views/",
     "app.js": [
-      "javascripts/angular.min.js",
-      "javascripts/angular-route.min.js",
-      "javascripts/angular-sanitize.min.js",
-      "javascripts/jquery-3.1.0.slim.min.js",
+      "external/angularjs-1.5.8/angular.min.js",
+      "external/angularjs-1.5.8/angular-route.min.js",
+      "external/angularjs-1.5.8/angular-sanitize.min.js",
+      "external/jquery-3.1.0/jquery-3.1.0.slim.min.js",
       "external/bootstrap-3.3.7-dist/js/bootstrap.min.js",
       "external/ngToast/ngToast.min.js",
-      "javascripts/app.js",
-      "javascripts/controller/script.js"
+      "app-module.js",
+      "controllers/indexController.js",
+      "controllers/mainController.js",
+      "controllers/partnerController.js",
+      "controllers/userController.js",
+      "services/accountsService.js",
+      "services/proxyService.js"
     ],
     "app.css": [
       "external/bootstrap-3.3.7-dist/css/bootstrap.min.css",

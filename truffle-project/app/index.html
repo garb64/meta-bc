@@ -13,7 +13,7 @@
     </div>
   </nav>
 </head>
-<body ng-controller="mainController">
+<body ng-controller="indexController">
 <div id="main">
   <toast></toast>
   <div class="container">
@@ -28,36 +28,36 @@
       <tr>
         <td>Consortium Partner 1</td>
         <td>{{accounts[1]}}</td>
-        <td></td>
-        <td><a class="btn btn-default btn-disabled" href="#/partner?id=1">
+        <td>{{proxies[1]}}</td>
+        <td><a class="btn btn-default" href="#/partner?id=1">
           <i class="fa fa-industry"></i> Open</a></td>
       </tr>
       <tr>
         <td>Consortium Partner 2</td>
         <td>{{accounts[2]}}</td>
-        <td></td>
-        <td><a class="btn btn-default btn-disabled" href="#/partner?id=2">
+        <td>{{proxies[2]}}</td>
+        <td><a class="btn btn-default" href="#/partner?id=2">
           <i class="fa fa-industry"></i> Open</a></td>
       </tr>
       <tr>
         <td>User 1</td>
         <td>{{accounts[5]}}</td>
-        <td>Proxy 1</td>
-        <td><a class="btn btn-default btn-disabled" href="#/user?id=5">
+        <td>{{proxies[5]}}</td>
+        <td><a class="btn btn-default btn-disabled" href="#/user?userAccount={{accounts[5]}}&proxy={{proxies[5]}}">
           <i class="fa fa-user"></i> Open</a></td>
       </tr>
       <tr>
         <td>User 2</td>
         <td>{{accounts[6]}}</td>
-        <td>Proxy 1</td>
-        <td><a class="btn btn-default btn-disabled" href="#/user?id=6">
+        <td>{{proxies[6]}}</td>
+        <td><a class="btn btn-default btn-disabled" href="#/user?userAccount={{accounts[6]}}&proxy={{proxies[6]}}">
           <i class="fa fa-user"></i> Open</a></td>
       </tr>
       <tr>
         <td>User 3</td>
         <td>{{accounts[7]}}</td>
-        <td>Proxy 1</td>
-        <td><a class="btn btn-default btn-disabled" href="#/user?id=7">
+        <td>{{proxies[7]}}</td>
+        <td><a class="btn btn-default btn-disabled" href="#/user?userAccount={{accounts[7]}}&proxy={{proxies[7]}}">
           <i class="fa fa-user"></i> Open</a></td>
       </tr>
     </table>
