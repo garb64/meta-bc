@@ -1,7 +1,7 @@
 // Base class for contracts that are use the registry
 
 contract RegistryAware {
-    address REGISTRY;
+    address public REGISTRY;
 
     function setRegistryAddress(address registryAddr) returns (bool result){
         // Once the registry address is set, don't allow it to be set again, except by the
@@ -11,10 +11,6 @@ contract RegistryAware {
         // }
         REGISTRY = registryAddr;
         return true;
-    }
-
-    function getRegistryAddress() returns(address registryAddress) {
-        return REGISTRY;
     }
 
 }

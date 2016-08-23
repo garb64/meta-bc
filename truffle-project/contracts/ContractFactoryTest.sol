@@ -6,7 +6,7 @@ contract ContractFactoryTest {
 
     function buildContract(address factoryAddress, bytes32 contractName) returns(bool res) {
         ContractFactory cf = ContractFactory(factoryAddress);
-        contracts["contact"] = cf.buildContract(contractName);
+        contracts[contractName] = cf.buildContract(contractName);
     }
 
     function getContractAddress(bytes32 contractName) returns(address addr) {

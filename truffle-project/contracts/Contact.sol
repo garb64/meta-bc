@@ -6,10 +6,6 @@ contract Contact {
         contractType = "contact";
     }
 
-    function isA() returns(string res) {
-        return contractType;
-    }
-
     function setContact(string c) returns(bool res) {
         contactJSON = c;
         return true;

@@ -3,12 +3,13 @@ contract('Proxy', (accounts) => {
   var user1 = accounts[3];
 
   it("should be registry aware", () => {
-    var registry = Registry.deployed();
+    var r = Registry.deployed();
+    var p = Proxy.deployed();
 
-    return Proxy.new(user1).then((proxy) => {
-      return proxy.setRegistryAddress(registry.address).then((tx_id) => {
-        return proxy.getRegistryAddress.call().then((addr) => {
-          assert.equal(addr, registry.address, "proxy is not registry aware");
+    return Proxy.new(user1).then((p) => {
+      return p.setRegistryAddress(r.address).then((tx_id) => {
+        return p.REGISTRY.call().then((addr) => {
+          assert.equal(addr, r.address, "proxy is not registry aware");
         });
       });
     });
@@ -29,9 +30,9 @@ contract('Proxy', (accounts) => {
     return Proxy.new(user1).then((proxy) => {
       return registry.addContract("contractFactory", contractFactory.address).then((tx_id) => {
         return proxy.setRegistryAddress(registry.address).then((tx_id) => {
-          return proxy.initContact().then((tx_id) => {
-            return proxy.getContactAddress.call().then((addr) => {
-              return Contact.at(addr).isA.call().then((res) => {
+          return proxy.initContract("contact").then((tx_id) => {
+            return proxy.getContractAddress.call("contact").then((addr) => {
+              return Contact.at(addr).contractType.call().then((res) => {
                 assert.equal(res, "contact", "proxy does not build contact contracts");
               });
             });

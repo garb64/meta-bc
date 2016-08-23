@@ -16,23 +16,19 @@ contract Proxy is RegistryAware {
         contractType = "proxy";
     }
 
-    function isA() returns(string res) {
-        return contractType;
-    }
-
     function getUserAccount() returns(address account) {
         return userAccount;
     }
 
-    function initContact() returns (bool res) {
+    function initContract(bytes32 contractName) returns (bool res) {
         address cf = Registry(REGISTRY).contracts("contractFactory");
-        address contact = ContractFactory(cf).buildContract("contact");
-        contracts["contact"] = contact;
+        address contact = ContractFactory(cf).buildContract(contractName);
+        contracts[contractName] = contact;
         return true;
     }
 
-    function getContactAddress() returns(address addr) {
-        return contracts["contact"];
+    function getContractAddress(bytes32 contractName) returns(address addr) {
+        return contracts[contractName];
     }
 
 }

@@ -16,6 +16,13 @@ contract('Contact', (accounts) => {
   };
   var mfs = JSON.stringify(mf);
 
+  it("should know its type", () => {
+    Contact.new().then((contact) => {
+      return contact.contractType.call().then((type) => {
+        assert.equal(type, "contact", "contact does not know its type");
+      });
+    });
+  });
 
   it("should set contact info", () => {
     var contact = Contact.deployed();

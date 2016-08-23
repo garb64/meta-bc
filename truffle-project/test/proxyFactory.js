@@ -7,7 +7,7 @@ contract('ProxyFactory', (accounts) => {
     var registry = Registry.deployed();
 
     return proxyFactory.setRegistryAddress(registry.address).then((tx_id) => {
-      return proxyFactory.getRegistryAddress.call().then((addr) => {
+      return proxyFactory.REGISTRY.call().then((addr) => {
         assert.equal(addr, registry.address, "proxy factory is not registry aware");
       });
     });
@@ -20,7 +20,7 @@ contract('ProxyFactory', (accounts) => {
       return proxyFactoryTest.buildProxy(proxyFactory.address, user1).then((tx_id) => {
         return proxyFactoryTest.getProxyAddress.call().then((addr) => {
           var proxy = Proxy.at(addr);
-          return proxy.isA.call().then((t) => {
+          return proxy.contractType.call().then((t) => {
             assert.equal(t, "proxy", "proxy factory did not build a proxy");
           });
         });
@@ -38,7 +38,7 @@ contract('ProxyFactory', (accounts) => {
         return proxyFactoryTest.buildProxy(proxyFactory.address, user1).then((tx_id) => {
           return proxyFactoryTest.getProxyAddress.call().then((addr) => {
             proxy = Proxy.at(addr);
-            return proxy.getRegistryAddress.call().then((addr) => {
+            return proxy.REGISTRY.call().then((addr) => {
               assert.equal(addr, registry.address, "proxy is missing registry address")
             });
           });
