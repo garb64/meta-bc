@@ -15,6 +15,7 @@ module.exports = {
       "controllers/partnerController.js",
       "controllers/userController.js",
       "services/accountsService.js",
+      "services/contactService.js",
       "services/proxyService.js"
     ],
     "app.css": [

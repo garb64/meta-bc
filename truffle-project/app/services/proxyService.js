@@ -1,4 +1,6 @@
-metaBc.factory('proxyService', ['$rootScope', function($rootScope) {
+metaBc.factory('proxyService', ['$rootScope', '$q', function($rootScope, $q) {
+
+    var deferObject;
 
     function watchProxiesBuilt() {
         var proxyFactory = ProxyFactory.deployed();
@@ -26,8 +28,29 @@ metaBc.factory('proxyService', ['$rootScope', function($rootScope) {
                     console.log("Error building proxy; see log.");
                 });
             });
+        },
 
-        }
+        getContractAddress: function (proxyAddress, contractName) {
+            var defer = $q.defer();
+            var proxy = Proxy.at(proxyAddress);
+            proxy.getContractAddress.call(contractName).then(function (addr) {
+                defer.resolve(addr);
+            });
+            return defer.promise;
+        },
+
+        addContract: function (userAccount, proxyAddress, contractName) {
+            var defer = $q.defer();
+            var proxy = Proxy.at(proxyAddress);
+            proxy.initContract.sendTransaction(contractName, {from: userAccount}).then(function (tx_id) {
+               return proxy.getContractAddress.call(contractName).then(function (addr) {
+                   console.log('contract created at: ' + addr);
+                   defer.resolve(addr);
+               })
+            });
+            return defer.promise;
+        },
+
     };
 
 }]);

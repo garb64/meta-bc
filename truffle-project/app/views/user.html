@@ -1,28 +1,62 @@
   <h3>User</h3>
-  <h4>{{userAccount}}</h4>
-  <table class="table">
-    <tr>
-      <th>Contract</th>
-      <th>Add</th>
-      <th>Cancel</th>
-      <th>Edit</th>
-    </tr>
-    <tr>
-      <td>Addressfreigabe</td>
-      <td><a class="btn btn-default" ng-disabled="false" href="#">
-        <i class="fa fa-plus"></i></a></td>
-      <td><a class="btn btn-default" ng-disabled="true" href="#">
-        <i class="fa fa-minus"></i></a></td>
-      <td><a class="btn btn-default" ng-disabled="true" href="#">
-        <i class="fa fa-edit"></i></a></td>
-    </tr>
-    <tr>
-      <td>km-Stand</td>
-      <td><a class="btn btn-default" ng-disabled="true" href="#">
-        <i class="fa fa-plus"></i></a></td>
-      <td><a class="btn btn-default" ng-disabled="true" href="#">
-        <i class="fa fa-minus"></i></a></td>
-      <td><a class="btn btn-default" ng-disabled="true" href="#">
-        <i class="fa fa-edit"></i></a></td>
-    </tr>
-  </table>
+  <h4>{{userAccount}} - {{proxy}}</h4>
+  <div class="row">
+    <div class="col-md-4">
+      <h4>Contracts</h4>
+      <table class="table">
+        <tr>
+          <th>Contract</th>
+          <th>Add</th>
+          <th>Cancel</th>
+          <th>Edit</th>
+        </tr>
+        <tr ng-repeat="(name, c) in contracts">
+          <td>{{c.desc}}</td>
+          <td><a class="btn btn-default" ng-disabled="c.address" ng-click="addContract(name)">
+            <i class="fa fa-plus"></i></a></td>
+          <td><a class="btn btn-default" ng-disabled="!c.address" href="#">
+            <i class="fa fa-minus"></i></a></td>
+          <td><a class="btn btn-default" ng-disabled="!c.address" ng-click="editContract(name)">
+            <i class="fa fa-edit"></i></a></td>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-8">
+      <h4>Details</h4>
+      <div ng-switch="editor">
+        <div ng-switch-when="contact">
+          <form ng-submit="setContact(contact)">
+            <div class="form-group">
+              <label for="n">Name</label>
+              <input type="text" class="form-control" id="n" placeholder="Name" ng-model="contact.n">
+            </div>
+            <div class="form-group">
+              <label for="e">eMail</label>
+              <input type="email" class="form-control" id="e" placeholder="eMail" ng-model="contact.e">
+            </div>
+            <div class="form-group">
+              <label for="a1">Address 1</label>
+              <input type="text" class="form-control" id="a1" placeholder="Address 1" ng-model="contact.a1">
+            </div>
+            <div class="form-group">
+              <label for="a2">Address 2</label>
+              <input type="text" class="form-control" id="a2" placeholder="Address 2" ng-model="contact.a2">
+            </div>
+            <div class="form-group">
+              <label for="z">Zip Code</label>
+              <input type="text" class="form-control" id="z" placeholder="Zip" ng-model="contact.z">
+            </div>
+            <div class="form-group">
+              <label for="c">City</label>
+              <input type="text" class="form-control" id="c" placeholder="City" ng-model="contact.c">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div>
+        <div ng-switch-when="mileage">mileage</div>
+        <div ng-switch-default>nothing selected</div>
+      </div>
+    </div>
+  </div>
+

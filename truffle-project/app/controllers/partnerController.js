@@ -6,10 +6,6 @@ metaBc.controller('partnerController', function($scope, $routeParams, ngToast, a
         ngToast.warn(err);
     });
 
-    // $scope.$on('ProxyBuilt', function(event, res){
-    //     console.log(res);
-    // });
-
     $scope.partnerId = $routeParams.id;
 
     $scope.buildProxy = function () {
