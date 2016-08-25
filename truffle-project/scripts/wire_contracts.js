@@ -9,4 +9,5 @@ module.exports = function(callback) {
 
     // set registry address in registry aware contracts
     ProxyFactory.deployed().setRegistryAddress(registry.address);
+    ContractFactory.deployed().setRegistryAddress(registry.address);
 };

@@ -17,7 +17,7 @@ contract('Contact', (accounts) => {
   var mfs = JSON.stringify(mf);
 
   it("should know its type", () => {
-    Contact.new().then((contact) => {
+    return Contact.new().then((contact) => {
       return contact.contractType.call().then((type) => {
         assert.equal(type, "contact", "contact does not know its type");
       });
@@ -25,12 +25,13 @@ contract('Contact', (accounts) => {
   });
 
   it("should set contact info", () => {
-    var contact = Contact.deployed();
-
-    return contact.setContact(mfs).then((tx_id) => {
-      return contact.getContact.call();
-    }).then((res) => {
-      assert.equal(res, mfs, "contact not stored correctly");
+    return Contact.new().then((contact) => {
+      return contact.setContact(mfs).then((tx_id) => {
+        return contact.getContact.call();
+      }).then((res) => {
+        assert.equal(res, mfs, "contact not stored correctly");
+      });
     });
   });
+
 });

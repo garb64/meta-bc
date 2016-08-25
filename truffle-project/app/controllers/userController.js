@@ -1,8 +1,8 @@
 metaBc.controller('userController', function($scope, $routeParams, ngToast, proxyService, contactService) {
 
     $scope.contracts = {
-        "contact": { desc: "Addressfreigabe" },
-        "mileage": { desc: "Kilometerstandsmeldung" }
+        "contact": { desc: "Address Info" },
+        "mileage": { desc: "Mileage Report" }
     };
 
     function getContracts() {

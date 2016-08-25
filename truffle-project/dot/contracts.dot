@@ -6,14 +6,23 @@ digraph Contracts {
 	}
     node [shape = box];
     Registry [style=filled];
-    Registry -> { ContractFactory; ProxyFactory; Consortium } [style=dashed, label="registers"]
+    Registry -> { ContractFactory; ProxyFactory; Consortium } [style=dashed]
     ContractFactory -> Contract [label="builds"];
+    ContractFactory -> PermissionMgr [label="builds"];
+    ContractFactory -> PermissionDB [label="builds"];
+    ContractFactory -> Registry [style=dotted, label="queries", color=blue];
     ProxyFactory -> Consortium [style=dotted, label="checks\nrole", color=green];
     ProxyFactory -> Registry [style=dotted, label="queries", color=blue];
     ProxyFactory -> Proxy [label="builds"];
     Proxy -> Registry [style=dotted; label="queries", color=blue];
     Proxy -> ContractFactory [style=dotted, label="uses"];
-    Proxy -> Contract [style=dashed, label="registers"];
+    Proxy -> Contract [style=dashed];
+    Proxy -> PermissionMgr [style=dashed];
+    Proxy -> PermissionDB [style=dashed];
     Proxy -> Account [label="belongs to"];
     Partner -> ProxyFactory [style=dotted, label="uses"];
+    PermissionMgr -> PermissionDB [style=dotted, label="queries", color=blue];
+    PermissionMgr -> Consortium [style=dotted, label="queries", color=blue];
+    PermissionMgr -> Registry [style=dotted, label="queries", color=blue];
+    Contract -> PermissionMgr [style=dotted, label="checks\npermission", color=green];
 }
