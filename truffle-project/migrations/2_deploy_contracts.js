@@ -3,4 +3,5 @@ module.exports = function(deployer) {
   deployer.deploy(Registry);
   deployer.deploy(ProxyFactory);
   deployer.deploy(Consortium);
+  deployer.deploy(Logger);
 };

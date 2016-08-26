@@ -10,6 +10,11 @@
       <div class="navbar-header">
         <a class="navbar-brand" href="/">meta-bc Demo</a>
       </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#/log">Log</a></li>
+        </ul>
+      </div>
     </div>
   </nav>
 </head>
@@ -63,6 +68,9 @@
     </table>
   </div>
   <div class="container" ng-view></div>
+  <div class="container">
+    <div ng-controller="logController" ng-include="'views/log.html'"></div>
+  </div>
 </div>
 </body>
 </html>

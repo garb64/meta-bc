@@ -27,6 +27,25 @@ contract('ContractFactory', (accounts) => {
         });
     });
 
+    it("should inject the registry address into contact contracts", () => {
+        var contractFactory = ContractFactory.deployed();
+        var r = Registry.deployed();
+
+        return contractFactory.setRegistryAddress(r.address).then((tx_id) => {
+            return ContractFactoryTest.new().then((cft) => {
+                return cft.buildContract(contractFactory.address, "contact").then((tx_id) => {
+                    return cft.getContractAddress.call("contact").then((addr) => {
+                        var c = Contact.at(addr);
+                        return c.REGISTRY.call().then((t) => {
+                            assert.equal(t, r.address, "contract factory did not inject registry address into contact");
+                        });
+                    });
+                });
+            });
+
+        });
+    });
+
     it("should build permission DB contracts", () => {
         var contractFactory = ContractFactory.deployed();
 

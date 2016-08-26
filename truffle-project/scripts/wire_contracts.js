@@ -6,6 +6,7 @@ module.exports = function(callback) {
     registry.addContract("contractFactory", ContractFactory.deployed().address);
     registry.addContract("proxyFactory", ProxyFactory.deployed().address);
     registry.addContract("consortium", Consortium.deployed().address);
+    registry.addContract("logger", Logger.deployed().address);
 
     // set registry address in registry aware contracts
     ProxyFactory.deployed().setRegistryAddress(registry.address);

@@ -1,7 +1,5 @@
 metaBc.factory('proxyService', ['$rootScope', '$q', function($rootScope, $q) {
 
-    var deferObject;
-
     function watchProxiesBuilt() {
         var proxyFactory = ProxyFactory.deployed();
         var event = proxyFactory.ProxyBuilt().watch(function(error, result){
