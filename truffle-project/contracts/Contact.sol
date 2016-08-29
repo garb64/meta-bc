@@ -21,7 +21,7 @@ contract Contact is RegistryAware {
 
     function setContact(string c) returns(bool res) {
         contactJSON = c;
-        Logger(loggerAddr).log(c);
+        Logger(loggerAddr).log(contractType, c);
         return true;
     }
 
