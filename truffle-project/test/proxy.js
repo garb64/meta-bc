@@ -4,7 +4,6 @@ contract('Proxy', (accounts) => {
 
     it("should be registry aware", () => {
         var r = Registry.deployed();
-        var p = Proxy.deployed();
 
         return Proxy.new(user1).then((p) => {
             return p.setRegistryAddress(r.address).then((tx_id) => {
