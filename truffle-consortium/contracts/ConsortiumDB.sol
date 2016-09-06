@@ -73,8 +73,8 @@ contract ConsortiumDB {
     function addProspect(string name, address addr, uint amount) onlyByRequestHandler {
         if (members[addr].addr != 0x0)
            throw;
-        // WRONG !!!! count is members and prospects
-        var quorum = count / 2 + 1;
+        var memberCount = getMemberCount();
+        var quorum = memberCount / 2 + 1;
         var buyIn = calcBuyIn();
         buyIn =+ amount;
         members[addr] = Member({name:name, addr:addr, amount:buyIn, total:0, status:1, quorum:quorum, signatureCount:0});
@@ -117,11 +117,20 @@ contract ConsortiumDB {
     
     // convinience function to get count of prospects
     function getProspectCount() returns (uint prospectCount) {
+        return(getCountByStatus(1));
+    }
+    
+    // convinience function to get count of members
+    function getMemberCount() returns (uint prospectCount) {
+        return(getCountByStatus(2));
+    }
+    
+    function getCountByStatus(uint status) returns (uint statusCount) {
         for (uint i=0; i < count; i++) {
-            if (members[index[i]].status == 1)
-                prospectCount++;
+            if (members[index[i]].status == status)
+                statusCount++;
         }
-        return (prospectCount);
+        return (statusCount);
     }
     
     // what is the buy in right now??
@@ -134,7 +143,6 @@ contract ConsortiumDB {
     }
     
     // Approve prospect
-    
     function approveProspect(address addr) onlyByMember {
         // only for prospects
         if (members[addr].status == 1) {
