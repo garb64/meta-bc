@@ -351,7 +351,7 @@ var SolidityEvent = require("web3/lib/web3/event.js");
     "abi": [],
     "unlinked_binary": "0x606060405260068060106000396000f3606060405200",
     "events": {},
-    "updated_at": 1473083313245,
+    "updated_at": 1473154992389,
     "links": {}
   }
 };

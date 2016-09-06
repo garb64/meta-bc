@@ -3,9 +3,7 @@ module.exports = function(deployer) {
     .then(function() {  
        return deployer.deploy(ConsortiumDB, ConsortiumRegistry.address);  
     }).then(function() {
-       return deployer.deploy(ConsortiumFactory, ConsortiumRegistry.address);
-    }).then(function() {
-       return deployer.deploy(ConsortiumRequest, ConsortiumRegistry.address);
+       return deployer.deploy(ConsortiumRequestHandler, ConsortiumRegistry.address);
     }).then(function() {
        return deployer.deploy(ConsortiumMint, ConsortiumRegistry.address);
     });

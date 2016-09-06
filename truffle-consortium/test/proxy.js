@@ -8,28 +8,79 @@ contract('ConsortiumFactory', function(accounts) {
       registry = ConsortiumRegistry.deployed();
       cdb = ConsortiumDB.deployed();
       mint = ConsortiumMint.deployed();
-      factory = ConsortiumFactory.deployed();
-          
+      handler = ConsortiumRequestHandler.deployed();
+    
       registry.setAddress("cdb", cdb.address);
-      registry.setAddress("admin", admin.address);
       registry.setAddress("mint", mint.address);
-      registry.setAddress("factory", factory.address);
+      registry.setAddress("handler", handler.address);
       
   }); 
 
-  it("create a valid new member request", function() {
-      return factory.newConsortiumRequest("alex", 0x123, 100, {from:accounts[0]}).then(function() {
-          return cdb.getAddress.call(0x123).then(function(name) {
-              assert.equal(name, "alex", "Alex was not found in cdb at 0x123");
-          });
+  it("name a new prospect", function() {
+      return handler.nameProspect("test1", 0x123, 100, {from:accounts[0]}).then(function() {
+        caught = 0;
+      }).catch(function() {
+        caught = 1;
+      }).then(function() {
+        assert.equal(0, caught, "Did not throw (an error occured)");
       });
   });
     
-  it("create a new member request and retrieve wrong address", function() {
-      return admin.addProspectRequest("thilo", 0x124, 100, {from:accounts[0]}).then(function() {
-          return cdb.getAddress.call(0x125).then(function(name) {
-              assert.equal(name, "thilo", "Thilo was not found in cdb at 0x124");
-          });
+  it("name annother new prospect", function() {
+      return handler.nameProspect("test2", 0x12345, 100, {from:accounts[0]}).then(function() {
+        caught = 0;
+      }).catch(function() {
+        caught = 1;
+      }).then(function() {
+        assert.equal(0, caught, "Did not throw (an error occured)");
       });
   });
+  
+  it("name a new prospect for the second time", function() {
+      return handler.nameProspect("test1", 0x123, 100, {from:accounts[0]}).then(function() {
+        caught = 0;
+      }).catch(function() {
+        caught = 1;
+      }).then(function() {
+        assert.equal(1, caught, "Did not throw (an error occured)");
+      });
+  });
+    
+  it("verify new prospect is prospect", function() {
+      return cdb.isConsortiumProspect(0x123).then(function() {
+        caught = 0;
+      }).catch(function() {
+        caught = 1;
+      }).then(function() {
+        assert.equal(0, caught, "Did not throw (an error occured)");
+      });
+  });
+  
+  it("verify new prospect is NOT member", function() {
+      return cdb.isConsortiumMember(0x123).then(function() {
+        caught = 0;
+      }).catch(function() {
+        caught = 1;
+      }).then(function() {
+        assert.equal(1, caught, "Did not throw (an error occured)");
+      });
+  });
+    
+  it("name a new prospect with wrong msg.sender address", function() {
+      return handler.nameProspect("thilo", 0x124, 100, {from:accounts[1]}).then(function() {
+        caught = 0;
+      }).catch(function() {
+        caught = 1;
+      }).then(function() {
+        assert.equal(1, caught, "Did not throw (an error occured)");
+      });
+  });
+    
+  it("count open prospects", function() {
+      return cdb.getProspectCount.call().then(function(rs) {
+        assert.equal(2, rs, "Wrong count");
+      });
+  });
+    
+  
 });

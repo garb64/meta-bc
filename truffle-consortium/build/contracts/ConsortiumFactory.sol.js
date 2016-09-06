@@ -350,6 +350,18 @@ var SolidityEvent = require("web3/lib/web3/event.js");
   "default": {
     "abi": [
       {
+        "constant": true,
+        "inputs": [],
+        "name": "createdBy",
+        "outputs": [
+          {
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "type": "function"
+      },
+      {
         "inputs": [
           {
             "name": "addr",
@@ -359,11 +371,11 @@ var SolidityEvent = require("web3/lib/web3/event.js");
         "type": "constructor"
       }
     ],
-    "unlinked_binary": "0x6060604052604051602080603a83395060806040525160008054600160a060020a031916821790555060068060346000396000f3606060405200",
+    "unlinked_binary": "0x6060604052604051602080608483395060806040525160008054600160a060020a0319908116331790915560018054909116821790555060428060426000396000f3606060405260e060020a60003504633a5673a48114601a575b005b603860005473ffffffffffffffffffffffffffffffffffffffff1681565b6060908152602090f3",
     "events": {},
-    "updated_at": 1473083313233,
+    "updated_at": 1473154992375,
     "links": {},
-    "address": "0xf3ab3410d54088d913f11b6d546cd712f5d42ef6"
+    "address": "0x2be3c83ea7df7b975b6585e0c4a6c6e93e12787e"
   }
 };
 

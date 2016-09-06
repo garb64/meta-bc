@@ -12,7 +12,7 @@ contract ConsortiumRegistry {
     }
 
     function setAddress(string key, address addr) onlyByOwner() {
-        if (consortiumList[key] != 0x0 || addr == 0x00) 
+        if (consortiumList[key] != 0x0) 
             throw;
         consortiumList[key] = addr;
     }
