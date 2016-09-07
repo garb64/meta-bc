@@ -14,8 +14,8 @@ contract('ConsortiumFactory', function(accounts) {
       registry.setAddress("mint", mint.address);
       registry.setAddress("handler", handler.address);
       
-  }); 
-
+  });
+    
   it("name a new prospect", function() {
       return handler.nameProspect("test1", 0x123, 100, {from:accounts[0]}).then(function() {
         caught = 0;

@@ -1,6 +1,12 @@
 import "./ConsortiumRegistry.sol";
 import "./ConsortiumDB.sol";
 
+/*
+
+
+Not sure if we need the requeshandler - it's best described as a proxy object 
+
+*/
 contract ConsortiumRequestHandler {
 
     // public address of creator
@@ -28,10 +34,26 @@ contract ConsortiumRequestHandler {
         registry = ConsortiumRegistry(addr);
     }
     
-    // accept prospect requests from existing members
+    // only accept prospect requests from existing members
     function nameProspect(string name, address addr, uint amount) {
         ConsortiumDB cdb = ConsortiumDB(registry.getAddress("cdb"));
         cdb.isConsortiumMember(msg.sender);
         cdb.addProspect(name, addr, amount);
     } 
+    
+    // olny accept prospect approvals from existing members
+    function approveProspect(address addr) {
+        ConsortiumDB cdb = ConsortiumDB(registry.getAddress("cdb"));
+        cdb.isConsortiumMember(msg.sender);
+        cdb.approveProspect(addr, msg.sender);
+    }
+    
+    // olny accept prospect approvals from existing members
+    function mintRequest(uint amount) {
+        ConsortiumDB cdb = ConsortiumDB(registry.getAddress("cdb"));
+        cdb.isConsortiumMember(msg.sender);
+        cdb.addMintRequest(amount, msg.sender);
+    }
+    
+    
 }
