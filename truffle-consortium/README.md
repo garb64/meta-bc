@@ -9,7 +9,7 @@ The consortium comprises of 5 contracts that once deployed in the block chain se
 
 ## Composition of Contracts
 
-![](./ConsortiumContracts.jpg)
+![](./img/ConsortiumContracts.jpg)
 
 ### ConsotiumRegistry
 The registry binds all contracts together and, as its name suggests provides the lookup for all contracts addresses. The registry is the first contract to be created. Its address is injected into all other contratcs as constructor argument. The registry is basically a KVS where keys can only be created once. 
@@ -40,6 +40,15 @@ Create all accounts for members.
 
 ### ConsortiumAccount
 Account holding coins for members. mulit sig contract (??)
- 
- 
+
+## Use Cases
+The in-live of the consortium is based on a few use cases.
+
+###New Consortium Member
+
+![](./img/ConsortiumSequence.jpg)
+
+###New Mint Request
+
+![](./img/MintSequence.jpg)
 
