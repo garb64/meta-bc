@@ -14,10 +14,10 @@ contract ConsortiumRequestHandler {
     
     // the registry
     ConsortiumRegistry registry;
-
+/*
     // Member handling in struct, two maps (name and address) and the memberCount
     struct Request {
-        uint requestType; /* newMember or mint */ 
+        uint requestType; // newMember or mint
         string name;
         address addr;
         uint amount;
@@ -27,7 +27,7 @@ contract ConsortiumRequestHandler {
     mapping(address => Request) requests;
     mapping(string  => address) index;
     uint indexCount;
-    
+*/  
     // Instantiate ConsortiumRequestHandler
     function ConsortiumRequestHandler(address addr) {
         createdBy = msg.sender;
@@ -55,5 +55,8 @@ contract ConsortiumRequestHandler {
         cdb.addMintRequest(amount, msg.sender);
     }
     
-    
+    // TODO: how to make sure the right request is apporved ??
+    function approveMintRequest(address addr) {
+        
+    }
 }

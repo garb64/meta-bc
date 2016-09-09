@@ -171,7 +171,7 @@ contract ConsortiumDB {
     }
     
     // Confirm mint request
-    function confirmMint(address addr) onlyByRequestHandler {
+    function confirmMint(address sender, address addr) onlyByRequestHandler {
         if (members[addr].status == 2) {
            for (uint i=0; i < members[addr].mintingSignatureCount; i++) {
                 if (members[addr].mintingSignatures[i] == sender) {
@@ -186,6 +186,7 @@ contract ConsortiumDB {
                 if (members[addr].mintingSignatureCount == members[addr].quorum) {
                     callMint(addr);
                 }
+            }
         } else {
             throw;
         }
