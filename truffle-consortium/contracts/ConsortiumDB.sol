@@ -1,14 +1,6 @@
 import "./ConsortiumRegistry.sol";
 import "./ConsortiumMint.sol";
 
-
-/*
- TODO: 
-    Is name in member really needed?
-    Do we need to considder primary account change?
-    Do new member request have to be serialized?
-*/
-
 contract ConsortiumDB {
 
     // public address of creator
@@ -18,21 +10,21 @@ contract ConsortiumDB {
     ConsortiumRegistry registry;
 
     // At time of writing enums are not implicitly convertible 
-    // to an from uintXXX. Therefor no ENUM is used
+    // to and from uintXXX. Therefor ENUM is not used
     // Status: 
     //        0 - Unknown, Terminated
     //        1 - Prospect
     //        2 - Member
 
-    // Member handling in struct, two maps (count and address) and the count
+    // Member handling in struct
     struct Member {
-        address addr; // Primary Account Address
-        string name;  // Name might not be needed
-        uint amount;
-        uint total;
-        uint status;
-        uint quorum;
-        uint signatureCount;
+        address addr;                     // Primary Account Address
+        string name;                      // Name might not be needed
+        uint amount;  // current open amount for buy in or mint
+        uint total;   // total minted amount buyin + mint requests
+        uint status;  // 
+        uint quorum;  // number of signatures needed to achieve majority
+        uint signatureCount; // signatures so far
         mapping (uint => address) signingMembers;
         uint mintingSignatureCount;
         mapping (uint => address) mintingSignatures;
