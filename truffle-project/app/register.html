@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="metaBc">
+<head>
+  <title>meta-bc</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="./app.css" rel='stylesheet' type='text/css'>
+  <script src="./app.js"></script>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">meta-bc Demo</a>
+      </div>
+    </div>
+  </nav>
+</head>
+<body ng-controller="indexController">
+<div id="main">
+  <toast></toast>
+  <div class="container">
+    <h3>Accounts</h3>
+    <table class="table">
+      <tr>
+        <th>User</th>
+        <th>Account</th>
+        <th>Proxy Address</th>
+        <th>Open View</th>
+      </tr>
+      <tr>
+        <td>Consortium Partner 1</td>
+        <td>{{accounts[1]}}</td>
+        <td>{{proxies[1]}}</td>
+        <td><a class="btn btn-default btn-sm" href="#/partner?id=1">
+          <i class="fa fa-industry"></i> Open</a></td>
+      </tr>
+      <tr>
+        <td>Consortium Partner 2</td>
+        <td>{{accounts[2]}}</td>
+        <td>{{proxies[2]}}</td>
+        <td><a class="btn btn-default btn-sm" href="#/partner?id=2">
+          <i class="fa fa-industry"></i> Open</a></td>
+      </tr>
+      <tr>
+        <td>User 1</td>
+        <td>{{accounts[5]}}</td>
+        <td>{{proxies[5]}}</td>
+        <td><a class="btn btn-default btn-sm" href="#/user?userAccount={{accounts[5]}}&proxy={{proxies[5]}}">
+          <i class="fa fa-user"></i> Open</a></td>
+      </tr>
+      <tr>
+        <td>User 2</td>
+        <td>{{accounts[6]}}</td>
+        <td>{{proxies[6]}}</td>
+        <td><a class="btn btn-default btn-sm" href="#/user?userAccount={{accounts[6]}}&proxy={{proxies[6]}}">
+          <i class="fa fa-user"></i> Open</a></td>
+      </tr>
+      <tr>
+        <td>User 3</td>
+        <td>{{accounts[7]}}</td>
+        <td>{{proxies[7]}}</td>
+        <td><a class="btn btn-default btn-sm" href="#/user?userAccount={{accounts[7]}}&proxy={{proxies[7]}}">
+          <i class="fa fa-user"></i> Open</a></td>
+      </tr>
+    </table>
+  </div>
+  <div class="container" ng-view></div>
+  <div class="container">
+    <div ng-controller="logController" ng-include="'views/log.html'"></div>
+  </div>
+</div>
+</body>
+</html>

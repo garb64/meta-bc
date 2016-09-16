@@ -1,0 +1,7 @@
+---
+- name: ensure mount point for disk
+  file: path={{disk_mountpoint}} state=directory mode=0755 owner={{disk_owner}} group={{disk_group}}
+- name: ensure data disk is mounted
+  mount: name={{disk_mountpoint}} src={{disk_device}} fstype={{disk_fstype}} state=mounted
+- name: ensure data disk belongs to owner
+  file: path={{disk_mountpoint}} state=directory mode=0755 owner={{disk_owner}} group={{disk_group}}

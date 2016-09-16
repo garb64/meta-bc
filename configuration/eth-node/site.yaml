@@ -1,0 +1,11 @@
+---
+- hosts: ethclients
+  remote_user: root
+  roles:
+  - settings
+  - ubuntu-common
+  - { role: disk-mounted, disk_mountpoint: /var/tmp, disk_device: /dev/sdb1 }
+  - { role: disk-mounted, disk_mountpoint: "/home/{{ethereum_user}}", disk_owner: "{{ethereum_user}}",
+      disk_group: "{{ethereum_group}}", disk_device: /dev/sdc1 }
+  - { role: geth-service, geth_service_datadir: "/home/{{ethereum_user}}/geth" }
+  - { role: geth-service, geth_service_name: geth-dev, geth_service_datadir: "/home/{{ethereum_user}}/geth-dev", geth_service_devmode: true, geth_service_rpcport: 8546 }

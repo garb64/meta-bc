@@ -1,0 +1,6 @@
+---
+disk_mountpoint: /mnt/sdb1
+disk_owner: root
+disk_group: root
+disk_device: /dev/sdb1
+disk_fstype: ext4

@@ -1,0 +1,15 @@
+---
+geth_service_name: geth
+geth_service_uid: ethereum
+geth_service_executable: /usr/bin/geth
+geth_service_devmode: false
+geth_service_verbosity: 3
+geth_service_rpc: true
+geth_service_rpcport: 8545
+geth_service_rpcapi: eth,net,web3,personal
+geth_service_rpcaddr: localhost
+geth_service_rpccorsdomain: http://localhost:8080
+geth_service_datadir: /var/ethereum
+geth_service_logdir: /var/log/geth
+
+

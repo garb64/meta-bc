@@ -1,0 +1,4 @@
+---
+- name: ensure packages are up to date
+  apt: upgrade=safe update-cache=yes
+

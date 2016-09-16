@@ -1,0 +1,18 @@
+---
+- name: ensure ethereum group
+  group: name={{ethereum_group}} gid={{ethereum_gid}} system=yes state=present
+- name: ensure ethereum user
+  user: name={{ethereum_user}} group={{ethereum_group}} uid={{ethereum_uid}} system=yes state=present
+
+
+- name: ensure necessary repositories for go-ethereum
+  apt_repository: repo='{{item}}'
+  with_items:
+    - ppa:ethereum/ethereum
+    - ppa:ethereum/ethereum-dev
+- name: ensure go ethereum is installed
+  apt: name={{item}} state=latest
+  with_items:
+     - software-properties-common
+     - ethereum
+
