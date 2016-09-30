@@ -1,0 +1,5 @@
+---
+- name: ensure ethereum group
+  group: name={{ethereum_group}} gid={{ethereum_gid}} system=yes state=present
+- name: ensure ethereum user
+  user: name={{ethereum_user}} group={{ethereum_group}} uid={{ethereum_uid}} system=yes state=present

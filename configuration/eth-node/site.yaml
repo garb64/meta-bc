@@ -4,8 +4,9 @@
   roles:
   - settings
   - ubuntu-common
+  - ethereum-user
   - { role: disk-mounted, disk_mountpoint: /var/tmp, disk_device: /dev/sdb1 }
+  - { role: kamaln7.swapfile, swapfile_size: 7GB, swapfile_swappiness: 10, swapfile_location: /var/tmp/swap }
   - { role: disk-mounted, disk_mountpoint: "/home/{{ethereum_user}}", disk_owner: "{{ethereum_user}}",
       disk_group: "{{ethereum_group}}", disk_device: /dev/sdc1 }
-  - { role: geth-service, geth_service_datadir: "/home/{{ethereum_user}}/geth" }
-  - { role: geth-service, geth_service_name: geth-dev, geth_service_datadir: "/home/{{ethereum_user}}/geth-dev", geth_service_devmode: true, geth_service_rpcport: 8546 }
+  - { role: angstwad.docker_ubuntu }

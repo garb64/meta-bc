@@ -1,3 +1,4 @@
 ---
 ethereum_user: ethereum
 ethereum_group: ethereum
+docker_group_members: [ethereum]

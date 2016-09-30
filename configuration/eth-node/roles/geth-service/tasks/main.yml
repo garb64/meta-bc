@@ -1,8 +1,0 @@
-- name: geth service definition
-  template: src=./templates/geth.conf.j2 dest=/etc/init/{{geth_service_name}}.conf
-- name: ensure geth log dir is writable for ethereum
-  file: path={{geth_service_logdir}} state=directory mode=0755 owner={{ethereum_user}}
-- name: ensure log files are writable for ethereum
-  file: path={{geth_service_logdir}}/{{geth_service_name}}.log owner={{ethereum_user}} group={{ethereum_group}}
-- name: ensure geth is started
-  service: name={{geth_service_name}} state=started

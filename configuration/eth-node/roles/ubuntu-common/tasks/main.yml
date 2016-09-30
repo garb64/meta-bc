@@ -1,4 +1,5 @@
 ---
 - name: ensure packages are up to date
   apt: upgrade=safe update-cache=yes
-
+- name: ensure sysstat package is installed
+  apt: name=sysstat state=latest
