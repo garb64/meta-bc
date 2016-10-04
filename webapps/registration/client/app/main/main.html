@@ -1,0 +1,22 @@
+<div class="jumbotron register">
+  <div class="container">
+    <h1>Welcome</h1>
+    <p>To subscribe to the mileage reporting service, please enter your email address and personal account ID.
+      We will generate your participation code and mail it to you. Click on the link in the confirmation mail to
+      submit your first mileage report and receive some coins!</p>
+    <form class="form-horizontal" ng-submit="main.buildProxy()">
+      <div class="input-group input-group-lg">
+        <span class="input-group-addon" id="basic-addon1">eMail </span>
+        <input type="email" class="form-control" ng-model="main.userEmail" placeholder="email@domain.com">
+      </div>
+      <div class="input-group input-group-lg">
+        <span class="input-group-addon" id="basic-addon2">Account </span>
+        <input type="text" class="form-control" ng-model="main.userAccount"
+               placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae">
+      </div>
+      <p><button type="submit" class="btn btn-primary btn-lg" ng-disabled="!(main.userAccount && main.userEmail)">
+        Submit &raquo;</button></p>
+    </form>
+
+  </div>
+</div>

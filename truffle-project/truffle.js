@@ -1,6 +1,7 @@
 module.exports = {
     build: {
         "index.html": "index.html",
+        "register.html": "register.html",
         "views/": "views/",
         "app.js": [
             "external/angularjs-1.5.8/angular.min.js",
@@ -16,17 +17,20 @@ module.exports = {
             "controllers/partnerController.js",
             "controllers/userController.js",
             "controllers/logController.js",
+            "controllers/registrationController.js",
             "services/accountsService.js",
             "services/contactService.js",
             "services/proxyService.js",
-            "services/logService.js"
+            "services/logService.js",
+            "services/constants.js"
         ],
         "app.css": [
             "external/bootstrap-3.3.7-dist/css/bootstrap.min.css",
             "external/font-awesome-4.6.3/css/font-awesome.min.css",
             "external/ngToast/ngToast-animations.min.css",
             "external/ngToast/ngToast.min.css",
-            "external/ui-grid-3.2.6/ui-grid.min.css"
+            "external/ui-grid-3.2.6/ui-grid.min.css",
+            "stylesheets/app.css"
         ],
         "images/": "images/",
         "fonts/": "external/fonts/"

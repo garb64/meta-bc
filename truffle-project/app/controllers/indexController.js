@@ -2,11 +2,14 @@ metaBc.controller('indexController', function($scope, ngToast, accountsService) 
 
     $scope.proxies = ['', '', '', '', '', '', '','', '', ''];
 
-    accountsService.getAccounts().then(function (accs) {
-        $scope.accounts = accs;
-    }, function(err) {
-        ngToast.warn(err);
-    });
+    var init = () => {
+        accountsService.getAccounts().then(function (accs) {
+            $scope.accounts = accs;
+        }, function(err) {
+            ngToast.warn(err);
+        });
+
+    };
 
     $scope.$on('ProxyBuilt', function(event, res) {
         angular.forEach($scope.accounts, function(a, i) {
@@ -14,5 +17,8 @@ metaBc.controller('indexController', function($scope, ngToast, accountsService) 
         });
     });
 
+    angular.element(document).ready(function () {
+        init();
+    });
 });
 

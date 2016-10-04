@@ -1,4 +1,3 @@
-// create the module and name it meta-bc
 var metaBc = angular.module('metaBc', ['ngRoute', 'ngSanitize', 'ngToast', 'ui.grid']);
 
 // configure our routes

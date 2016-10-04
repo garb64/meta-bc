@@ -1,4 +1,9 @@
 var userAddress = process.argv[4];
+var partnerAddress = process.argv[5];
+
+function logResult(event) {
+    console.log(`{"userAccount":"${event.account}","proxyAddress":"${event.proxyAddress}"}`);
+}
 
 module.exports = (callback) => {
     var registry = Registry.deployed();
@@ -6,8 +11,8 @@ module.exports = (callback) => {
     registry.getContractAddress.call("proxyFactory").then((pf) => {
         var proxyFactory = ProxyFactory.at(pf);
         var log = proxyFactory.ProxyBuilt();
-        proxyFactory.buildProxy(userAddress, {from: '0x2f9233188c82fc603469f8ebc7edd0803a12d17d'}).then((tx) => {
-            log.watch((error, event) => { console.log(event.args); log.stopWatching(); });
+        proxyFactory.buildProxy(userAddress, {from: partnerAddress}).then((tx) => {
+            log.watch((error, event) => { logResult(event.args); log.stopWatching(); });
         });
     });
 };
